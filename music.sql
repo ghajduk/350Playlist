@@ -1,5 +1,4 @@
 
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
@@ -51,7 +50,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(12) NOT NULL,
   `password` varchar(12) NOT NULL,
-  `zipcode` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -59,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `zipcode`) VALUES
-(1, 'raz', 'p00d13', 88005),
-(2, 'ann', 'changeme', 22401),
-(3, 'lazy', 'qwerty', 22401);
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'greg', 'hajduk'),
+(2, 'kinzie', 'brooks',),
+(3, 'daniela', 'cardona');
