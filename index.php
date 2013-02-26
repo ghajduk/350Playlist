@@ -33,18 +33,48 @@
         </div>
        
         <div class="sidebaritem">
-          <h3>Recent Comments</h3>
-          <ul>
-            <li><a href="#" title="">Comment 1</a></li>
-            <li><a href="#" title="">Comment 2</a></li>
-          </ul>
-        </div>
+          <h3>Add a Vid!</h3>
+		  <form method = "post" action = "index.php">
+		  <ul>
+          <tr><td>Artist:</td><td><input type="text" id="art" name="art" /></td></tr>
+		  <tr><td>Album:</td><td><input type="text" id="alb" name="alb" /></td></tr>
+          <tr><td>Song Title:</td><td><input type="text" id="songti" name="songti" /></td></tr>
+		  <tr><td>Song Code:</td><td><input type="text" id="songco" name="songco" /></td></tr>
+		  <tr><td>&nbsp;</td><td><input type="submit" value="Add Video" /></td></tr>
+		  </ul>
+		  <?php 
+			$art = $_POST['art'];
+			$alb = $_POST['alb'];
+			$songti = $_POST['songti'];
+			$songco = $_POST['songco'];
+			$query = "INSERT INTO playlist (artist, album, songTitle, link) VALUES ('";
+					$query = $query . $art . "', '" . $alb . "', '" . $songti . "', '" . $songco . "')";
+			?>
+		  </form>
+		  </div>
       </div>
       <div id="content">
         <h1>Welcome to the 350Playlist</h1>
         <!-- **** INSERT PAGE CONTENT HERE **** -->
         <p>
-          Sick of YouTube?  Join us!
+          <b>Sick of YouTube?  Join us!</b>
+		  <br><br>
+		  <?php
+	include('db_connect.php');
+	$query = "SELECT artist, album, songName, link FROM playlist";
+    $result = mysqli_query($db, $query)
+                         or die("Error Querying Database");
+    while($row = mysqli_fetch_array($result)) {
+  		$artist = $row['artist'];
+  		$album = $row['album'];
+		$songName = $row['songName'];
+		$link = $row['link'];
+  	echo "<tr> Artist: $artist <br><td> Album: $album <br><td>Song Title: $songName<br></td><td> 
+	<iframe width='420' height='315' src='http://www.youtube.com/embed/$link' frameborder='0' allowfullscreen></iframe> <br></td><br></tr>\n";
+	
+  }   
+    mysqli_close($db);
+?>
         </p>
         <p>
           Need to create an account? <a href="createAccount.php" title="createaccount">Click here.</a>
