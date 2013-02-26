@@ -12,7 +12,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 CREATE DATABASE IF NOT EXISTS music;
 GRANT ALL PRIVILEGES ON music.* to 'assist'@'localhost' identified by 'assist';
-USE session;
+USE music;
 -- --------------------------------------------------------
 
 --
@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `playlist` (
   `artist` varchar(70) NOT NULL,
   `album` varchar(50) NOT NULL,
   `songName` varchar(50) NOT NULL,
+  `link` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
@@ -31,14 +32,14 @@ CREATE TABLE IF NOT EXISTS `playlist` (
 -- Dumping data for table `music`
 --
 
-INSERT INTO `playlist` (`id`, `artist`, `album`, `songName`) VALUES
-(1, 'Modest Mouse', 'The Moon and Antarctica', 'A Different City'),
-(2, 'Modest Mouse', 'The Moon and Antarctica', 'The Stars are Projectors'),
-(3, 'Modest Mouse', 'Good News for People Who Love Bad News', 'Float On'),
-(4, 'Modest Mouse', 'Good News for People Who Love Bad News', 'Ocean Breathes Salty'),
-(5, 'Modest Mouse', 'Good News for People Who Love Bad News', 'The View'),
-(6, 'Adel', 'Twentyone', 'Someone Like You'),
-(7, 'Adel', 'Twentyone', 'Rumor Has It');
+INSERT INTO `playlist` (`id`, `artist`, `album`, `songName`, `link`) VALUES
+(1, 'Modest Mouse', 'The Moon and Antarctica', 'A Different City', 'WbXtDd5szGU'),
+(2, 'Modest Mouse', 'The Moon and Antarctica', 'The Stars are Projectors', 'duYqlrgC17Q'),
+(3, 'Modest Mouse', 'Good News for People Who Love Bad News', 'Float On', 'CTAud5O7Qqk'),
+(4, 'Modest Mouse', 'Good News for People Who Love Bad News', 'Ocean Breathes Salty', 'TPhnOKmhbBw'),
+(5, 'Modest Mouse', 'Good News for People Who Love Bad News', 'The View', 'EHOpmF3glak'),
+(6, 'Adel', 'Twentyone', 'Someone Like You', 'hLQl3WQQoQ0'),
+(7, 'Adel', 'Twentyone', 'Rumor Has It', 'Ti3t7MAwaaM');
 
 -- --------------------------------------------------------
 
@@ -59,5 +60,5 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (1, 'greg', 'hajduk'),
-(2, 'kinzie', 'brooks',),
+(2, 'kinzie', 'brooks'),
 (3, 'daniela', 'cardona');
