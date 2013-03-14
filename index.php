@@ -57,7 +57,7 @@
         <h1>Welcome to the 350Playlist</h1>
         <!-- **** INSERT PAGE CONTENT HERE **** -->
         <p>
-          <b>Sick of YouTube?  Join us! Greg's edit</b>
+          <b>Sick of YouTube?  Join us! D's edit</b>
 		  <br><br>
 		  <?php
 	include('db_connect.php');
