@@ -61,14 +61,14 @@
 		  <br><br>
 		  <?php
 	include('db_connect.php');
-	$query = "SELECT artist, album, songName, link FROM playlist";
+	$query = "select users.username, artist.artistname art, album.albumname alb, song.songname son, link.link lin FROM users JOIN artist JOIN album JOIN song JOIN playlist JOIN link WHERE users.user_id=playlist.user_id AND playlist.link_id=link.link_id AND link.song_id=song.song_id AND song.album_id=album.album_id AND artist.artist_id=album.artist_id AND users.username='greg';";
     $result = mysqli_query($db, $query)
                          or die("Error Querying Database");
     while($row = mysqli_fetch_array($result)) {
-  		$artist = $row['artist'];
-  		$album = $row['album'];
-		$songName = $row['songName'];
-		$link = $row['link'];
+  		$artist = $row['art'];
+  		$album = $row['alb'];
+		$songName = $row['son'];
+		$link = $row['lin'];
   	echo "<tr> Artist: $artist <br><td> Album: $album <br><td>Song Title: $songName<br></td><td> 
 	<iframe width='420' height='315' src='http://www.youtube.com/embed/$link' frameborder='0' allowfullscreen></iframe> <br></td><br></tr>\n";
 	
