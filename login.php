@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
@@ -42,7 +45,30 @@
       </div>
       <div id="content">
         <h1>Login</h1>
-          <form method="post" action="index.php">
+          <form method="post" action="login.php">
+		    <?php
+		
+  	   include "db_connect.php";
+  	   if (isset($_POST['username'])){
+  	     $name= $_POST['username'];
+         $pw = $_POST['pw'];
+		
+
+         $query = "select * from users WHERE username = '$name' AND password = SHA('$pw')";
+         $result = mysqli_query($db, $query)
+         or die("Error Querying Database");
+         if ($row = mysqli_fetch_array($result))
+         {
+		 $_SESSION['user'] = $row['username'];
+   		#echo $query;
+   		echo '<META http-equiv="refresh" content="0;URL=index.php">';
+		
+		
+		
+		
+       }}
+	   
+?>
     <p>
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" size="40" </p>

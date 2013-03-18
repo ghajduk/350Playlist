@@ -146,7 +146,7 @@ INSERT INTO `artist` (`artist_id`, `artistname`) VALUES
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(12) NOT NULL,
-  `password` varchar(12) NOT NULL,
+  `password` varchar(50) NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -155,6 +155,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`) VALUES
-(1, 'greg', 'hajduk'),
-(2, 'kinzie', 'brooks'),
-(3, 'daniela', 'cardona');
+(1, 'greg', SHA('hajduk')),
+(2, 'kinzie', SHA('brooks')),
+(3, 'daniela', SHA('cardona'));
