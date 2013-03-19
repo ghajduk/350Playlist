@@ -44,8 +44,8 @@ session_start();
         </div>
       </div>
       <div id="content">
-	  
-       <h1>Your Playlist<?php if(isset($_SESSION['user'])) {
+     
+		     <h1>Your Playlist<?php if(isset($_SESSION['user'])) {
 	#echo "inside loop HIIII!!!!!";
 		  echo ", ", $_SESSION['user'];
 		  } ?></h1>
@@ -61,19 +61,21 @@ session_start();
 		  #echo $_SESSION['user'];
 		  $currentUser = $_SESSION['user'];
 		  
-	$query = "select users.username, artist.artistname art, album.albumname alb, song.songname son, link.link lin FROM users JOIN artist JOIN album JOIN song JOIN playlist JOIN link WHERE users.user_id=playlist.user_id AND playlist.link_id=link.link_id AND link.song_id=song.song_id AND song.album_id=album.album_id AND artist.artist_id=album.artist_id AND users.username='$currentUser';";
+	$query = "select users.username, artist.artistname artistname, album.albumname albumname, song.songname songname, link.link link FROM users JOIN artist JOIN album JOIN song JOIN playlist JOIN link WHERE users.user_id=playlist.user_id AND playlist.link_id=link.link_id AND link.song_id=song.song_id AND song.album_id=album.album_id AND artist.artist_id=album.artist_id AND users.username='$currentUser';";
     $result = mysqli_query($db, $query)
                          or die("Error Querying Database");
 						
-    while($row = mysqli_fetch_array($result)) {
-  		$artist = $row['art'];
-		$album = $row['alb'];
-		$songName = $row['son'];
-		$link = $row['lin'];
-		
-  	echo "<tr> Artist: $artist <br><td> Album: $album <br>Song Title: $songName<br></td><td> 
-	<iframe width='420' height='315' src='http://www.youtube.com/embed/$link' frameborder='0' allowfullscreen></iframe> <br></td><br></tr>\n";
+        while($row = mysqli_fetch_array($result)) {
+   		$artistname = $row['artistname'];
+		$albumname = $row['albumname'];
+ 		$songname = $row['songname'];
+ 		$link = $row['link'];
+
+	echo "<tr><td>$artistname<td>$artistname $songname</td><td>$link</td></tr>\n";
 	
+  	echo "<tr> Artist: $artistname <br><td> Album: $albumname <br>Song Title: $songname<br></td><td>
+	<iframe width='420' height='315' src='http://www.youtube.com/embed/$link' frameborder='0' allowfullscreen></iframe> <br></td><br></tr>\n";
+
   }   
   }
   else {
@@ -81,7 +83,12 @@ session_start();
 	}
     mysqli_close($db);
 ?>
-		
+					
+					
+					
+					
+					
+        
       </div>
     </div>
     <div id="footer">
@@ -89,4 +96,9 @@ session_start();
     </div>
   </div>
 </body>
+
+
 </html>
+
+
+

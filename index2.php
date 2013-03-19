@@ -45,8 +45,8 @@ session_start();
 		  
         <!-- **** INSERT PAGE CONTENT HERE **** -->
 		 <?php 
-				
-				include('db_connect.php');
+
+					include('db_connect.php');
 					
 						$artistname = $_POST['artistname'];
 						$albumname = $_POST['albumname'];
@@ -89,11 +89,13 @@ session_start();
 					or die ('ERRORRR');
 					
 					//echo "DATABASE UPDATED WITH: " .$link ;
+					
+					
 		
 		?>
 		
         <p>
-         
+   
 		 
 		  <br>
 		  

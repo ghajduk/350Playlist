@@ -37,15 +37,15 @@ session_start();
        
         <div class="sidebaritem">
           <h3>Add a Vid!</h3>
-		  <form method = "post" action = "index.php">
+		  <form method = "post" action = "index2.php">
 		  <ul>
-          <tr><td>Artist:</td><td><input type="text" id="art" name="art" /></td></tr>
-		  <tr><td>Album:</td><td><input type="text" id="alb" name="alb" /></td></tr>
-          <tr><td>Song Title:</td><td><input type="text" id="songti" name="songti" /></td></tr>
-		  <tr><td>Song Code:</td><td><input type="text" id="songco" name="songco" /></td></tr>
+          <tr><td>Artist:</td><td><input type="text" id="artistname" name="artistname" /></td></tr>
+		  <tr><td>Album:</td><td><input type="text" id="albumname" name="albumname" /></td></tr>
+          <tr><td>Song Title:</td><td><input type="text" id="songname" name="songname" /></td></tr>
+		  <tr><td>Song Code:</td><td><input type="text" id="link" name="link" /></td></tr>
 		  <tr><td>&nbsp;</td><td><input type="submit" value="Add Video" /></td></tr>
 		  </ul>
-	
+		  
 		  </form>
 		  </div>
       </div>
@@ -58,7 +58,9 @@ session_start();
         <p>
          
 		  <br>
-
+		  Sick of YouTube? DUDE
+		   
+		   JOIN US!
         </p>
         <p>
           Need to create an account? <a href="createAccount.php" title="createaccount">Click here.</a>

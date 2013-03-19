@@ -49,7 +49,7 @@ session_destroy();
 		  <tr><td>Song Code:</td><td><input type="text" id="songco" name="songco" /></td></tr>
 		  <tr><td>&nbsp;</td><td><input type="submit" value="Add Video" /></td></tr>
 		  </ul>
-	
+		 
 		  </form>
 		  </div>
       </div>
@@ -62,8 +62,10 @@ session_destroy();
         <p>
          
 		  <br>
-		 
-        </p>
+		   Sick of YouTube? 
+		   
+		   JOIN US!
+		  </p>
         <p>
           Need to create an account? <a href="createAccount.php" title="createaccount">Click here.</a>
         </p>
