@@ -47,18 +47,18 @@ session_start();
 		 <?php 
 				
 					
-						$artist = $_POST['artistname'];
+				$artist = $_POST['artistname'];
 						$album = $_POST['albumname'];
 						$song = $_POST['songname'];
 						$link = $_POST['link'];
 			
 					echo "<p>$song $artist</p>";
-					
+					echo "<p>$link</p>";
 			
 					$query = "INSERT INTO playlist (artist, album, song, link) VALUES ('";
 						$query = $query . $artist . "', '" . $album . "', '" . $song . "', '" . $link . "')";
 					
-				echo "<p>QUERY   $query</p>";
+				
 					
 		
 		?>
