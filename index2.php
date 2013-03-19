@@ -46,35 +46,54 @@ session_start();
         <!-- **** INSERT PAGE CONTENT HERE **** -->
 		 <?php 
 				
+				include('db_connect.php');
 					
-				$artist = $_POST['artistname'];
-						$album = $_POST['albumname'];
-						$song = $_POST['songname'];
+						$artistname = $_POST['artistname'];
+						$albumname = $_POST['albumname'];
+						$songname = $_POST['songname'];
 						$link = $_POST['link'];
 			
-					echo "<p>$song $artist</p>";
+					echo "<p>$songname $artistname</p>";
 					echo "<p>$link</p>";
 			
-					$query = "INSERT INTO playlist (artist, album, song, link) VALUES ('";
-						$query = $query . $artist . "', '" . $album . "', '" . $song . "', '" . $link . "')";
-					
 				
 					
+					$query = "INSERT INTO artist (artistname)VALUES ('".$artistname."')";
+					//echo $query;
+					mysqli_query($db, $query)
+					or die ('ERRORRR');
+					
+					//echo "DATABASE UPDATED WITH: " .$artistname ;
+					$last_id = mysql_insert_id();
+					
+					$query = "INSERT INTO album (artist_id, albumname)VALUES ('";
+					$query = $query . $last_id . "', '" .$albumname."')";
+					//echo $query;
+					mysqli_query($db, $query)
+					or die ('ERRORRR');
+					
+					//echo "DATABASE UPDATED WITH: " .$albumname ;
+					$last_id = mysql_insert_id();
+					$query = "INSERT INTO song (album_id, songname)VALUES ('";
+					$query = $query . $last_id . "', '" .$songname."')";
+					//echo $query;
+					mysqli_query($db, $query)
+					or die ('ERRORRR');
+					
+					//echo "DATABASE UPDATED WITH: " .$songname ;
+					$last_id = mysql_insert_id();
+					$query = "INSERT INTO link (song_id, link)VALUES ('";
+					$query = $query . $last_id . "', '" .$link."')";
+					//echo $query;
+					mysqli_query($db, $query)
+					or die ('ERRORRR');
+					
+					//echo "DATABASE UPDATED WITH: " .$link ;
 		
 		?>
 		
         <p>
          
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
 		 
 		  <br>
 		  
