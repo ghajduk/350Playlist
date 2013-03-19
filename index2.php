@@ -1,10 +1,6 @@
 <?php
 session_start();
 ?>
-<?php
-unset($_SESSION['user']);
-session_destroy();
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
@@ -39,35 +35,51 @@ session_destroy();
           </ul>
         </div>
        
-        <div class="sidebaritem">
-          <h3>Add a Vid!</h3>
-		  <form method = "post" action = "index.php">
-		  <ul>
-          <tr><td>Artist:</td><td><input type="text" id="art" name="art" /></td></tr>
-		  <tr><td>Album:</td><td><input type="text" id="alb" name="alb" /></td></tr>
-          <tr><td>Song Title:</td><td><input type="text" id="songti" name="songti" /></td></tr>
-		  <tr><td>Song Code:</td><td><input type="text" id="songco" name="songco" /></td></tr>
-		  <tr><td>&nbsp;</td><td><input type="submit" value="Add Video" /></td></tr>
-		  </ul>
-	
-		  </form>
-		  </div>
+       
       </div>
       <div id="content">
-        <h1>Welcome to the 350Playlist<?php if(isset($_SESSION['user'])) {
+        <h1>Thanks for Adding a Video<?php if(isset($_SESSION['user'])) {
 	#echo "inside loop HIIII!!!!!";
 		  echo ", ", $_SESSION['user'];
 		  } ?></h1>
+		  
         <!-- **** INSERT PAGE CONTENT HERE **** -->
+		 <?php 
+				
+					
+						$artist = $_POST['artistname'];
+						$album = $_POST['albumname'];
+						$song = $_POST['songname'];
+						$link = $_POST['link'];
+			
+					echo "<p>$song $artist</p>";
+					
+			
+					$query = "INSERT INTO playlist (artist, album, song, link) VALUES ('";
+						$query = $query . $artist . "', '" . $album . "', '" . $song . "', '" . $link . "')";
+					
+				echo "<p>QUERY   $query</p>";
+					
+		
+		?>
+		
         <p>
          
-		  <br>
 		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		  <br>
+		  
         </p>
-        <p>
-          Need to create an account? <a href="createAccount.php" title="createaccount">Click here.</a>
-        </p>
-        
+              
       </div>
     </div>
     <div id="footer">
