@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (isset($_POST['username'])){
+setcookie('user', $_POST['username'], time()*60*60*24*30);
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -50,9 +52,10 @@ session_start();
 		  </div>
       </div>
       <div id="content">
-        <h1>Welcome to the 350Playlist<?php if(isset($_SESSION['user'])) {
+		
+        <h1>Welcome to the 350Playlist<?php if(isset($_COOKIE['user'])) {
 	#echo "inside loop HIIII!!!!!";
-		  echo ", ", $_SESSION['user'];
+		  echo ", ", $_COOKIE['user'];
 		  } ?></h1>
         <!-- **** INSERT PAGE CONTENT HERE **** -->
         <p>

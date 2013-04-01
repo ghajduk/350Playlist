@@ -79,7 +79,8 @@ CREATE TABLE IF NOT EXISTS `song` (
   `song_id` int(11) NOT NULL AUTO_INCREMENT,
   `album_id` int(11) NOT NULL,
   `songname` varchar(70) NOT NULL,
-  PRIMARY KEY (`song_id`)
+  PRIMARY KEY (`song_id`),
+  INDEX(songname)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --

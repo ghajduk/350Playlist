@@ -1,5 +1,5 @@
 <?php
-session_start();
+setcookie('user', $name, time()*60*60*24*30);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -14,7 +14,7 @@ session_start();
   	     $name = $_POST['username'];
          $pw = $_POST['pw'];
 		 
-		 $_SESSION['user'] = $name;
+		 $_COOKIE['user'] = $name;
 		 
 		 
 		 $query1 = "INSERT INTO users(username, password) VALUES
