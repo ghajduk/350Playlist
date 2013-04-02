@@ -1,7 +1,5 @@
 <?php
-if (isset($_POST['username'])){
-setcookie('user', $POST_['username'], time()*60*60*24*30);
-}
+session_start();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -47,9 +45,9 @@ setcookie('user', $POST_['username'], time()*60*60*24*30);
       </div>
       <div id="content">
      
-		     <h1>Your Playlist<?php if(isset($_COOKIE['user'])) {
+		     <h1>Your Playlist<?php if(isset($_SESSION['user'])) {
 	#echo "inside loop HIIII!!!!!";
-		  echo ", ", $_COOKIE['user'];
+		  echo ", ", $_SESSION['user'];
 		  } ?></h1>
         <!-- **** INSERT PAGE CONTENT HERE **** -->
  					<h3>...</h3>
@@ -58,13 +56,14 @@ setcookie('user', $POST_['username'], time()*60*60*24*30);
 		  
 	include('db_connect.php');
 	#echo "HIIII!!!!!";
-	if(isset($_COOKIE['user'])) {
+	if(isset($_SESSION['user'])) {
 	#echo "inside loop HIIII!!!!!";
-		  #echo $_COOKIE['user'];
-		  $currentUser = $_COOKIE['user'];
-		  
-	$query = "select users.username, artist.artistname artistname, album.albumname albumname, song.songname songname, link.link link FROM users JOIN artist JOIN album JOIN song JOIN playlist JOIN link WHERE users.user_id=playlist.user_id AND playlist.link_id=link.link_id AND link.song_id=song.song_id AND song.album_id=album.album_id AND artist.artist_id=album.artist_id AND users.username='$currentUser';";
-    $result = mysqli_query($db, $query)
+		  #echo $_SESSION['user'];
+		  $currentUser = $_SESSION['user'];
+		
+
+	$query = "select u.username, art.artistname artistname, a.albumname albumname, s.songname songname, l.link link FROM users INNER JOIN artist art INNER JOIN album a INNER JOIN song s INNER JOIN playlist p INNER JOIN link l ON u.user_id=p.user_id AND p.link_id=l.link_id AND l.song_id=s.song_id AND s.album_id=a.album_id AND art.artist_id=a.artist_id AND u.username = (SELECT username FROM users WHERE username = '$currentUser');
+	   $result = mysqli_query($db, $query)
                          or die("Error Querying Database");
 						
         while($row = mysqli_fetch_array($result)) {
@@ -101,6 +100,5 @@ setcookie('user', $POST_['username'], time()*60*60*24*30);
 
 
 </html>
-
 
 
