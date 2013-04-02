@@ -43,13 +43,15 @@ setcookie('user', $POST_['username'], time()*60*60*24*30);
         <h1>Thanks for Adding a Video<?php if(isset($_COOKIE['user'])) {
 	#echo "inside loop HIIII!!!!!";
 		  echo ", ", $_COOKIE['user'];
+		  $u = $_COOKIE['user'];
 		  } ?></h1>
 		  
         <!-- **** INSERT PAGE CONTENT HERE **** -->
 		 <?php 
 
 					include('db_connect.php');
-					
+						//?=$_COOKIE['username']
+						//$username = echo "$_COOKIE['username']";
 						$artistname = $_POST['artistname'];
 						$albumname = $_POST['albumname'];
 						$songname = $_POST['songname'];
@@ -59,36 +61,79 @@ setcookie('user', $POST_['username'], time()*60*60*24*30);
 					echo "<p>$link</p>";
 			
 				
-					
+					//adding artist name, generating aritstid
 					$query = "INSERT INTO artist (artistname)VALUES ('".$artistname."')";
-					//echo $query;
 					mysqli_query($db, $query)
-					or die ('ERRORRR');
+							or die ('ERRORRR');
 					
-					//echo "DATABASE UPDATED WITH: " .$artistname ;
-					$last_id = mysql_insert_id();
-					
+					//grabbing atristid
+					//adding albumname, generating albumid
+					$query = "select artist_id from artist where artistname='" .$artistname. "'";
+					$result = mysqli_query($db, $query)
+                         or die("Error Querying Database");
+					while($row = mysqli_fetch_array($result)) {
+						$artistid = $row['artist_id'];
+					}															
 					$query = "INSERT INTO album (artist_id, albumname)VALUES ('";
-					$query = $query . $last_id . "', '" .$albumname."')";
-					//echo $query;
+					$query = $query . $artistid . "', '" .$albumname."')";
 					mysqli_query($db, $query)
-					or die ('ERRORRR');
+								or die ('ERRORRR');
 					
-					//echo "DATABASE UPDATED WITH: " .$albumname ;
-					$last_id = mysql_insert_id();
+					//grabbing albumid
+					//adding songname, generating songid
+					$query = "select album_id from album where albumname='" .$albumname. "'";
+					$result = mysqli_query($db, $query)
+                         or die("Error Querying Database");
+					while($row = mysqli_fetch_array($result)) {
+						$albumid = $row['album_id'];
+					}
 					$query = "INSERT INTO song (album_id, songname)VALUES ('";
-					$query = $query . $last_id . "', '" .$songname."')";
-					//echo $query;
+					$query = $query . $albumid . "', '" .$songname."')";
 					mysqli_query($db, $query)
-					or die ('ERRORRR');
+							or die ('ERRORRR');
+					
+					//grabbing songid
+					//adding linkname, generating linkid
+					$query = "select song_id from song where songname='" .$songname. "'";
+					$result = mysqli_query($db, $query)
+                         or die("Error Querying Database");
+					while($row = mysqli_fetch_array($result)) {
+						$songid = $row['song_id'];
+					}
+					$query = "INSERT INTO link (song_id, link)VALUES ('";
+					$query = $query . $songid . "', '" .$link."')";
+					mysqli_query($db, $query)
+							or die ('ERRORRRzzzz');
+					
+					//grabbing linkid
+					//adding to playlist based on userid
+					$query = "select link_id from link where link='" .$link. "'";
+					$result = mysqli_query($db, $query)
+                         or die("Error Querying Database for link");
+					while($row = mysqli_fetch_array($result)) {
+						$linkid = $row['link_id'];
+					}
+					$u = $_COOKIE['user'];
+					$query = "select user_id from users where username='" .$u. "'";
+					//echo $u;
+					$result = mysqli_query($db, $query)
+                         or die("Error Querying Database for username");
+					while($row = mysqli_fetch_array($result)) {
+						$userid = $row['user_id'];
+					}
+					$query = "INSERT INTO playlist (link_id, user_id)VALUES ('";
+					$query = $query . $linkid . "', '" .$userid. "')";
+					mysqli_query($db, $query)
+							or die ('ERRORRRzzzz');
+					
 					
 					//echo "DATABASE UPDATED WITH: " .$songname ;
-					$last_id = mysql_insert_id();
-					$query = "INSERT INTO link (song_id, link)VALUES ('";
-					$query = $query . $last_id . "', '" .$link."')";
+					//$last_id = mysql_insert_id();
+					//$query = "INSERT INTO link (song_id, link)VALUES ('";
+					//$query = $query . $last_id . "', '" .$link."')";
 					//echo $query;
-					mysqli_query($db, $query)
-					or die ('ERRORRR');
+					//mysqli_query($db, $query)
+					//or die ('ERRORRR');
 					
 					//echo "DATABASE UPDATED WITH: " .$link ;
 					

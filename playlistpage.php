@@ -73,7 +73,7 @@ setcookie('user', $POST_['username'], time()*60*60*24*30);
  		$songname = $row['songname'];
  		$link = $row['link'];
 
-	echo "<tr><td>$artistname<td>$artistname $songname</td><td>$link</td></tr>\n";
+	//echo "<tr><td>$artistname<td>$artistname $songname</td><td>$link</td></tr>\n";
 	
   	echo "<tr> Artist: $artistname <br><td> Album: $albumname <br>Song Title: $songname<br></td><td>
 	<iframe width='420' height='315' src='http://www.youtube.com/embed/$link' frameborder='0' allowfullscreen></iframe> <br></td><br></tr>\n";
