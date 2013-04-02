@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['username'])){
-setcookie('user', $POST_['username'], time()*60*60*24*30);
+setcookie('user', $_POST['username'], time()*60*60*24*30);
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">

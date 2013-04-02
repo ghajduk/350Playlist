@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (isset($_POST['username'])){
+setcookie('user', $_POST['username'], time()*60*60*24*30);
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -45,9 +47,9 @@ session_start();
       </div>
       <div id="content">
      
-		     <h1>Your Playlist<?php if(isset($_SESSION['user'])) {
+		     <h1>Your Playlist<?php if(isset($_COOKIE['user'])) {
 	#echo "inside loop HIIII!!!!!";
-		  echo ", ", $_SESSION['user'];
+		  echo ", ", $_COOKIE['user'];
 		  } ?></h1>
         <!-- **** INSERT PAGE CONTENT HERE **** -->
  					<h3>...</h3>
@@ -56,10 +58,10 @@ session_start();
 		  
 	include('db_connect.php');
 	#echo "HIIII!!!!!";
-	if(isset($_SESSION['user'])) {
+	if(isset($_COOKIE['user'])) {
 	#echo "inside loop HIIII!!!!!";
 		  #echo $_SESSION['user'];
-		  $currentUser = $_SESSION['user'];
+		  $currentUser = $_COOKIE['user'];
 		
 
 		$query = "select users.username, artist.artistname artistname, album.albumname albumname, song.songname songname, link.link link FROM users JOIN artist JOIN album JOIN song JOIN playlist JOIN link WHERE users.user_id=playlist.user_id AND playlist.link_id=link.link_id AND link.song_id=song.song_id AND song.album_id=album.album_id AND artist.artist_id=album.artist_id AND users.username='$currentUser';";	   $result = mysqli_query($db, $query)
