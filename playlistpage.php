@@ -62,8 +62,7 @@ session_start();
 		  $currentUser = $_SESSION['user'];
 		
 
-	$query = "select u.username, art.artistname artistname, a.albumname albumname, s.songname songname, l.link link FROM users INNER JOIN artist art INNER JOIN album a INNER JOIN song s INNER JOIN playlist p INNER JOIN link l ON u.user_id=p.user_id AND p.link_id=l.link_id AND l.song_id=s.song_id AND s.album_id=a.album_id AND art.artist_id=a.artist_id AND u.username = (SELECT username FROM users WHERE username = '$currentUser');
-	   $result = mysqli_query($db, $query)
+		$query = "select users.username, artist.artistname artistname, album.albumname albumname, song.songname songname, link.link link FROM users JOIN artist JOIN album JOIN song JOIN playlist JOIN link WHERE users.user_id=playlist.user_id AND playlist.link_id=link.link_id AND link.song_id=song.song_id AND song.album_id=album.album_id AND artist.artist_id=album.artist_id AND users.username='$currentUser';";	   $result = mysqli_query($db, $query)
                          or die("Error Querying Database");
 						
         while($row = mysqli_fetch_array($result)) {
